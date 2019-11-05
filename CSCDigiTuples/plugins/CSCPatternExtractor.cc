@@ -152,6 +152,24 @@ void CSCPatternExtractor::beginJob() {
 void CSCPatternExtractor::analyze(const edm::Event&iEvent, const edm::EventSetup& iSetup){
 	tree.reset();
 	if(selection == "") return;
+	vector<unsigned int> eventsWithMissingRecHits;
+	eventsWithMissingRecHits.push_back(5028145);
+	eventsWithMissingRecHits.push_back(4990780);
+	eventsWithMissingRecHits.push_back(5269361);
+	eventsWithMissingRecHits.push_back(5418868);
+	eventsWithMissingRecHits.push_back(5159327);
+	eventsWithMissingRecHits.push_back(5409441);
+	eventsWithMissingRecHits.push_back(5370891);
+
+	bool isMissingRecHitsEvent = false;
+	for(auto e: eventsWithMissingRecHits){
+		if(e == iEvent.id().event()){
+			isMissingRecHitsEvent = true;
+			break;
+		}
+	}
+	if(!isMissingRecHitsEvent) return; //only look at these kinds of events
+
 	cout << "Filling Pattern Extractor" << endl;
 
 	const int DEBUG = 0; //TODO: make this better
