@@ -6,6 +6,7 @@
  */
 
 #include "../include/CSCHelperFunctions.h"
+#include "../include/CSCClasses.h"
 #include <TGraph.h>
 #include <TF1.h>
 #include <TSystem.h>
@@ -45,8 +46,8 @@ int getErrors(const vector<int>& x,const vector<int>& y, float& sigmaM, float& s
 
 
 int LUTLinearFitWriter_Macro(){
-	gSystem->Load("../lib/CSCClasses_cpp");
-	gSystem->Load("../lib/CSCHelperFunctions_cpp");
+	gSystem->Load("../lib/CSCClasses_cpp.so");
+	gSystem->Load("../lib/CSCHelperFunctions_cpp.so");
 
 
 	//all the patterns we will fit
